@@ -1,0 +1,14 @@
+version: "3"
+services:
+  pasqooda-api:
+    build: .
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DEBUG=${DEBUG}
+    restart: "unless-stopped"
+    hostname: "docker_pasqooda_api"
+    container_name: "pasqooda_api"
+    ports:
+      - 4040:8086
