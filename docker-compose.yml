@@ -12,3 +12,4 @@ services:
     container_name: "pasqooda_api"
     ports:
       - 4040:8086
+    tty: false
