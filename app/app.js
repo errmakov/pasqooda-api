@@ -17,7 +17,7 @@ const dbConf = {
 let dbh;
 db.initDb(dbConf,(err, res)=>{
   dbh = res;
-  console.log(dbh);
+  //console.log(dbh);
 })
 
 
@@ -37,7 +37,7 @@ expressWorker.use('/', (req, res, next) => {
 expressWorker.use(express.json());
 
 expressWorker.get('/', function(req, res, next) {
-  res.send('hello world');
+  res.send('hello world! This is paqooda-api');
   console.log(req.body);
 });
 
