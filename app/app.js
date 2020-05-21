@@ -2,6 +2,7 @@ const DIR = __dirname;
 const config = require(DIR + '/config').config[process.env.NODE_ENV||'dev'];
 
 const helpers  = require(DIR + '/helpers').helpers;
+const Notifier = require(DIR + '/../app/Notifier');
 
 let express = require('express');
 let expressWorker = express();
@@ -17,7 +18,6 @@ const dbConf = {
 let dbh;
 db.initDb(dbConf,(err, res)=>{
   dbh = res;
-  //console.log(dbh);
 })
 
 
@@ -41,10 +41,25 @@ expressWorker.get('/', function(req, res, next) {
   console.log(req.body);
 });
 
-expressWorker.post('/echo/', function(req, res, next) {
+expressWorker.post('/echo', function(req, res, next) {
     console.log('Hit echo post');
     console.log(req.body);
     res.json(req.body);
+});
+
+expressWorker.post('/notify', function(req, res, next) {
+  console.log('Hit notify post');
+  let notifier = new Notifier(config.notifier);
+  notifier.sendEmail(config.notifier.address, 'Новая заявка на сайте от ' + helpers.convertDate(new Date(), true), helpers.prepareNotice(req.body))
+  .then((result)=>{
+    res.json({res:'OK', message: 'Notice sended'});
+  })
+  .catch((err)=>{
+    console.log('Error while send notify: ', err);
+    res.json({res:'ERR', message: err.message});
+  })
+  
+  
 });
 
 expressWorker.post('/user/add', function(req, res, next) {
@@ -60,27 +75,27 @@ expressWorker.post('/user/add', function(req, res, next) {
         .then((result)=>{
             //setTimeout(()=>{
             //console.log('Emulate network issues');
-            res.json({res:'OK', echo: req.body});
+            res.json({res:'OK', message: req.body});
             console.log('Response sended');
           //}, helpers.getRandomInt(1000));
         })
         .catch((err)=>{
-          console.error('Error Firebase: ', err.message);
-          res.json({err:err.message});
+          console.error('Error Firebase: ', err);
+          res.json({res:'ERR', message:'Сервер приболел :( Мы уже в курсе проблемы и решаем ее. Попробуйте отправить данные чуть позже.' + err.message});
         })
         
       } else {
         console.error('Error Bot Detected with token');
-        res.json({err:'You look like bot with token'});
+        res.json({res: 'ERR', message:'Дружище, нейросеть думает, что ты робот. С этим ничего нельзя сделать. Напиши нам письмо, почта в контактах.'});
       }
     })
     .catch((err)=>{
-      console.error('Error Google captcha service down: ', err.message);
-      res.json({err:'Google captcha service down'});
+      console.error('Error Google captcha service down: ', err);
+      res.json({res: 'ERR', message:'Дружище, нейросеть приболела :( Без нее мы не получим твое сообщение. Попробуй отправить данные чуть позже.'});
     })
   } else {
     console.error('Error Bot Detected without token');
-    res.json({err:'You look like bot without token'});
+    res.json({res: 'ERR', message:'Дружище, нейросеть думает, что ты робот. С этим ничего нельзя сделать. Напиши нам письмо, почта в контактах.'});
   }
   
 });
@@ -89,5 +104,5 @@ expressWorker.post('/user/add', function(req, res, next) {
 
 console.log('running');
 
-expressWorker.listen(8086, () => console.log('Express listening on:' + 8086));
+expressWorker.listen(config.port, () => console.log('Express listening on:' + config.port));
 
