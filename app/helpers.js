@@ -107,6 +107,8 @@ let helpers = {
 
 
             }
+        } else {
+            result+='Неоплаченные налоги: нет\r\n\r\n';
         };
 
         if(src.registration.hasPenalties == 'yes') {
@@ -121,7 +123,7 @@ let helpers = {
             }
         } else {
             result+='Неоплаченные штрафы: нет\r\n\r\n';
-        }
+        };
 
         if(src.registration.hasRealty == 'yes') {
             result+='Недвижимость\r\n';
