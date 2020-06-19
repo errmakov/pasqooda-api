@@ -1,34 +1,14 @@
+const axios = require('axios');
+
 let helpers = {
-    convertDate(date, isTime) {
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-        let hours = date.getHours();
-        let mins = date.getMinutes();
-        let secs = date.getSeconds();
-      
-        day = day.toString().padStart(2,'0');
-        month = month.toString().padStart(2,'0');
-        hours = hours.toString().padStart(2,'0');
-        mins = mins.toString().padStart(2,'0');
-        secs = secs.toString().padStart(2,'0');
-      
-        //let result = day + '.' + month + '.' + year;
-        let result = year  + '-' + month + '-' + day;
-      
-        if (isTime) {
-          //result += ' ' + hours + ':' + mins + ':' + secs;
-          result += '-' + hours + '-' + mins + '-' + secs;
-        }
-      
-        return result;
-    },
+  
     
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     },
 
-    convertDate(date, isTime) {
+    convertDate(date, isTime=false, style='dotted') {
+        let result = '';
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
@@ -42,10 +22,19 @@ let helpers = {
         mins = mins.toString().padStart(2,'0');
         secs = secs.toString().padStart(2,'0');
     
-        let result = day + '.' + month + '.' + year;
+        if (style === 'dotted') {
+            result = day + '.' + month + '.' + year;
+        } else {
+            result = year + '-' + month + '-' + day;
+        }
     
         if (isTime) {
-          result += ' ' + hours + ':' + mins + ':' + secs;
+            if (style === 'dotted') {
+                result += ' ' + hours + ':' + mins + ':' + secs;
+            } else {
+                result += '-' + hours + '-' + mins + '-' + secs;
+            }
+          
         }
         return result;
     },
@@ -194,9 +183,154 @@ let helpers = {
                 result+='\r\n\r\n';
             }                
         } 
-
+        result += '\n\nФайл: ' + src.filename;
         //console.log(result);
         return result;
+    },
+
+    
+    /**
+     * Return char from russian alphabet by it's index
+     * @param  {number} i Index of alphabet char
+     * @returns {string} Char of russian alphabet
+     */
+    abcList(i)  {
+        let abc = 'абвгдежзиклмнопрстуфхцшщэюя';
+        return abc[i];
+    },
+
+    /**
+     * Return count of elements of array, that less then given number
+     * @param  {number} src Given number
+     * @param  {array} numSet Array with numbers
+     * @returns {number}
+     */
+    minSum(src, numSet)  {
+        result = 0;
+        for (let i in numSet) {
+            result += numSet[i] < src ? 1 : 0;
+        };
+        return result;
+    },
+
+    /**
+     * Returns arbitration court 
+     * Makes api call to DADATA suggestion API (more details https://dadata.ru/api/suggest/address/), then makes mapping
+     * @param  {string} address Address of registration (from the passport)
+     * @returns {string} Court name
+     */
+    getJurisdiction(address)  {
+        return new Promise((resolve, reject)=>{
+            result = '';
+            if (address === '') resolve('');
+            let regions = {
+                'Москва': 'города Москвы', 
+                'Московская': 'Московской области', 
+                'Адыгея': 'Республики Адыгея', 
+                'Алтай': 'Республики Алтай', 
+                'Башкортостан': 'Республики Башкортостан',
+                'Бурятия': 'Республики Бурятия',
+                'Дагестан': 'Республики Дагестан',
+                'Ингушетия': 'Республики Ингушетия',
+                'Кабардино-Балкарская': 'Кабардино-Балкарской Республики',
+                'Калмыкия': 'Республики Калмыкия',
+                'Карачаево-Черкесская': 'Карачаево-Черкесской Республики',
+                'Карелия': 'Республики Карелия',
+                'Крым': 'Республики Крым',
+                'Марий Эл': 'Республики Марий Эл',
+                'Мордовия': 'Республики Мордовия',
+                'Саха /Якутия/': 'Республики Саха (Якутия)',
+                'Северная Осетия - Алания': 'Республики Северная Осетия — Алания',
+                'Татарстан': 'Республики Татарстан',
+                'Тыва': 'Республики Тыва',
+                'Удмуртская': 'Удмуртской Республики',
+                'Хакасия': 'Республики Хакасия',
+                'Чеченская': 'Чеченской Республики',
+                'Чувашская республика': 'Чувашской Республики - Чувашии',
+                'Алтайский': 'Алтайского края',
+                'Забайкальский': 'Забайкальского края',
+                'Камчатский': 'Камчатского края',
+                'Краснодарский': 'Краснодарского края',
+                'Красноярский': 'Красноярского края',
+                'Пермский': 'Пермского края',
+                'Приморский': 'Приморского края',
+                'Ставропольский': 'Ставропольского края',
+                'Хабаровский': 'Хабаровского края',
+                'Амурская': 'Амурской области',
+                'Архангельская': 'Архангельской области',
+                'Ненецкий': 'Архангельской области',
+                'Астраханская': 'Астраханской области',
+                'Белгородская': 'Белгородской области',
+                'Брянская': 'Брянской области',
+                'Владимирская': 'Владимирской области',
+                'Волгоградская': 'Волгоградской области',
+                'Вологодская': 'Вологодской области',
+                'Воронежская': 'Воронежской области',
+                'Ивановская': 'Ивановской области',
+                'Иркутская': 'Иркутской области',
+                'Калининградская': 'Калининградской области',
+                'Калужская': 'Калужской области',
+                'Кемеровская область - Кузбасс': 'Кемеровской области',
+                'Кировская': 'Кировской области',
+                'Костромская': 'Костромской области',
+                'Курганская': 'Курганской области',
+                'Курская': 'Курской области',
+                'Санкт-Петербург': 'Санкт-Петербурга и Ленинградской области',
+                'Ленинградская': 'Санкт-Петербурга и Ленинградской области',
+                'Севастополь': 'города Севастополя',
+                'Липецкая': 'Липецкой области',
+                'Магаданская': 'Магаданской области',
+                'Мурманская': 'Мурманской области',
+                'Новгородская': 'Новгородской области',
+                'Новосибирская': 'Новосибирской области',
+                'Омская': 'Омской области',
+                'Оренбургская': 'Оренбургской области',
+                'Орловская': 'Орловской области',
+                'Пензенская': 'Пензенской области',
+                'Псковская': 'Псковской области',
+                'Ростовская': 'Ростовской области',
+                'Рязанская': 'Рязанской области',
+                'Самарская': 'Самарской области',
+                'Саратовская': 'Саратовской области',
+                'Свердловская': 'Свердловской области',
+                'Смоленская': 'Смоленской области',
+                'Тамбовская': 'Тамбовской области',
+                'Тверская': 'Тверской области',
+                'Тульская': 'Тульской области',
+                'Тюменская': 'Тюменской области',
+                'Ямало-Ненецкий': 'Ямало-Ненецкого автономного округа',
+                'Ханты-Мансийский Автономный округ - Югра': 'Ханты-Мансийского автономного округа — Югры',
+                'Ульяновская': 'Ульяновской области',
+                'Челябинская': 'Челябинской области',
+                'Ярославская': 'Ярославской области',
+                'Еврейская': 'Еврейской автономной области',
+                'Чукотский': 'Чукотского автономного округа',
+                
+                
+
+            }
+            axios.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', { "query": address, "count": 1 }, {headers:{"Content-Type": "application/json", "Authorization": "Token e37030a8cc1174fcb954f1f5067a2a899d9abedb"}})
+            .then((resp)=>{
+                //console.log(resp.data.suggestions);
+                if (resp.data.suggestions[0]) {
+                    let region = resp.data.suggestions[0].data.region;
+                    let jurisdiction = regions[region];
+                    if (!jurisdiction) {
+                        jurisdiction = resp.data.suggestions[0].data.region;
+                        console.log('Key not found: ', region);
+                    }
+                    resolve(jurisdiction);
+                } else {
+                    resolve('');
+                    console.log('No suggestions found for address: ', address);
+                    console.log('Suggest: ', resp.data.suggestions);
+                }
+            })
+            .catch((err)=>{
+                console.log('Catch axios err: ', err);
+                reject(err);
+            })
+        })
     }
     
 }
