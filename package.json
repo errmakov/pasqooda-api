@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive ./tests --timeout 5000"
+    "test": "mocha --recursive ./tests --timeout 5000",
+    "test0": "mocha ./tests/testPdfGenerator --timeout 5000",
+    "test1": "mocha ./tests/testHelpers --timeout 5000",
+    "test2": "mocha ./tests/testNotifier --timeout 5000"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +19,12 @@
     "express": "^4.17.1",
     "firebase-admin": "^8.12.1",
     "fs": "0.0.1-security",
+    "jspdf": "^1.5.3",
     "mocha": "^7.1.2",
-    "nodemailer": "^6.4.6"
+    "nodemailer": "^6.4.6",
+    "pdf-lib": "^1.6.1",
+    "pdfkit": "^0.11.0",
+    "petrovich": "^0.2.1",
+    "rubles": "^0.2.0"
   }
 }
