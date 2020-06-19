@@ -3,6 +3,10 @@ const config = require(DIR + '/config').config[process.env.NODE_ENV||'dev'];
 
 const helpers  = require(DIR + '/helpers').helpers;
 const Notifier = require(DIR + '/../app/Notifier');
+const PdfGenerator = require(DIR + '/../app/PdfGenerator');
+const EventEmmiter = require('events');
+
+let ee = new EventEmmiter();
 
 let express = require('express');
 let expressWorker = express();
@@ -23,8 +27,9 @@ db.initDb(dbConf,(err, res)=>{
 
 
 
-// respond with "hello world" when a GET request is made to the homepage
 
+
+// respond with "hello world" when a GET request is made to the homepage
 expressWorker.use('/', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -50,7 +55,12 @@ expressWorker.post('/echo', function(req, res, next) {
 expressWorker.post('/notify', function(req, res, next) {
   console.log('Hit notify post');
   let notifier = new Notifier(config.notifier);
-  notifier.sendEmail(config.notifier.address, 'Новая заявка на сайте от ' + helpers.convertDate(new Date(), true), helpers.prepareNotice(req.body))
+  let attachments = [{
+    filename: 'Заявление.pdf',
+    path: '/Users/weblime/www/pasqooda/api/app/userfiles/' + req.body.filename,
+    contentType: 'application/pdf'
+  }]
+  notifier.sendEmail(config.notifier.address, 'Новая заявка на сайте от ' + helpers.convertDate(new Date(), true), helpers.prepareNotice(req.body), attachments)
   .then((result)=>{
     res.json({res:'OK', message: 'Notice sended'});
   })
@@ -58,8 +68,6 @@ expressWorker.post('/notify', function(req, res, next) {
     console.log('Error while send notify: ', err);
     res.json({res:'ERR', message: err.message});
   })
-  
-  
 });
 
 expressWorker.post('/user/add', function(req, res, next) {
@@ -71,13 +79,19 @@ expressWorker.post('/user/add', function(req, res, next) {
       console.log('Captcha score is: ', resp.data.score);
       if (resp.data.score > 0.3) {
         let randomID = helpers.getRandomInt(10000);
-        dbh.collection('users').doc(helpers.convertDate(new Date(), true) + '_' + randomID).set(req.body)
+        let userID = helpers.convertDate(new Date(), true, 'dashed') + '_' + randomID;
+        req.body.filename = userID + '.pdf';
+        dbh.collection('users').doc(userID).set(req.body)
         .then((result)=>{
-            //setTimeout(()=>{
-            //console.log('Emulate network issues');
-            res.json({res:'OK', message: req.body});
-            console.log('Response sended');
-          //}, helpers.getRandomInt(1000));
+            
+            let pdfGenerator = new PdfGenerator({data:req.body, filename:userID});
+            pdfGenerator.getCourt().then(()=>{
+              pdfGenerator.generate();
+              res.json({res:'OK', message: req.body});
+              console.log('Response sended');
+            })
+            
+          
         })
         .catch((err)=>{
           console.error('Error Firebase: ', err);
@@ -100,7 +114,12 @@ expressWorker.post('/user/add', function(req, res, next) {
   
 });
 
-  
+
+expressWorker.post('/checkout/result', function(req, res, next) {
+  console.log('Hit checkout/result');
+  console.log('Request body: ', req.body);
+});
+
 
 console.log('running');
 
