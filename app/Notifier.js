@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 class Notifier {
     constructor(options) {
+        
         this._options = options;
         this.transporter = nodemailer.createTransport({
             host: options.smtp.host,
@@ -11,15 +12,20 @@ class Notifier {
               pass: options.smtp.password
             }
           });
+          
+
     }
-    sendEmail(to, subject, message) {
+    sendEmail(to, subject, message, attachments) {
+      
         return this.transporter.sendMail({
             from: this._options.smtp.from,
             to: to,
             subject: subject,
-            text: message // plain text body
+            text: message, // plain text body
+            attachments: attachments,
           });
     }
+    
 }
 
 module.exports = Notifier;
