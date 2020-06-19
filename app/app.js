@@ -116,7 +116,12 @@ expressWorker.post('/user/add', function(req, res, next) {
 
 
 expressWorker.post('/checkout/result', function(req, res, next) {
-  console.log('Hit checkout/result');
+  console.log('Hit checkout/result post');
+  console.log('Request body: ', req.body);
+});
+
+expressWorker.get('/checkout/result', function(req, res, next) {
+  console.log('Hit checkout/result get');
   console.log('Request body: ', req.body);
 });
 
