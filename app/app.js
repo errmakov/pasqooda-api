@@ -115,12 +115,13 @@ expressWorker.post('/user/add', function(req, res, next) {
 });
 
 
-expressWorker.post('/checkout/result', function(req, res, next) {
-  console.log('Hit checkout/result post');
+expressWorker.post('/webhook/checkout/yakassa/result', function(req, res, next) {
+  console.log('Hit /webhook/checkout/yakassa/result post');
   console.log('Request body: ', req.body);
+  res.send('ok');
 });
 
-expressWorker.get('/checkout/result', function(req, res, next) {
+expressWorker.get('/checkout/kassa/result', function(req, res, next) {
   console.log('Hit checkout/result get');
   console.log('Request body: ', req.body);
 });
