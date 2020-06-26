@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./tests --timeout 5000",
-    "test0": "mocha ./tests/testPdfGenerator --timeout 5000",
-    "test1": "mocha ./tests/testHelpers --timeout 5000",
-    "test2": "mocha ./tests/testNotifier --timeout 5000"
+    "testPdfGenerator": "mocha ./tests/testPdfGenerator --timeout 5000",
+    "testHelpers": "mocha ./tests/testHelpers --timeout 5000",
+    "testNotifier": "mocha ./tests/testNotifier --timeout 5000",
+    "testPayment": "mocha ./tests/testPayment --timeout 5000",
+    "testUser": "mocha ./tests/testUser --timeout 5000"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "axios": "^0.19.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase-admin": "^8.12.1",

@@ -2,6 +2,8 @@ version: "3"
 services:
   pasqooda-api:
     build: .
+    volumes:
+      - /Users/weblime/www/pasqooda/api:/apps/pasqooda-api
     env_file:
       - .env
     environment:

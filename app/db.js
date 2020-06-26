@@ -6,7 +6,7 @@ let fbStore = '';
 
 function initDb(dbConf, callback) {
   if (_db) {
-    console.warn("Trying to init DB again!");
+//    console.warn("Trying to init DB again!");
     return callback(null, _db);
   }
 

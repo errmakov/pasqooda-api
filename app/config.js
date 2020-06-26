@@ -24,6 +24,11 @@ let config = {
       },
       address: process.env.NOTIFIER_ADDRESS
     },
+    yakassa: {
+      api: process.env.YAKASSA_API,
+      secret: process.env.YAKASSA_SECRET,
+      shopid: process.env.YAKASSA_SHOPID
+    },
     stage: 'dev'
   },
 
@@ -45,6 +50,12 @@ let config = {
         from: process.env.NOTIFIER_SMTP_FROM,
       },
       address: process.env.NOTIFIER_ADDRESS
+    },
+    yakassa: {
+      api: process.env.YAKASSA_API,
+      secret: process.env.YAKASSA_SECRET,
+      shopid: process.env.YAKASSA_SHOPID,
+      defaultValue: "300.00"
     },
     debug: (process.env.DEBUG||1),
     port: process.env.PORT,
