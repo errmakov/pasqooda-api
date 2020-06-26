@@ -1,6 +1,6 @@
 FROM node:12
 WORKDIR /apps/pasqooda-api
-COPY ./ /apps/pasqooda-api
+#COPY ./ /apps/pasqooda-api
 EXPOSE 4040
 
 # Install app dependencies and run application
