@@ -188,6 +188,8 @@ expressWorker.post('/webhook/checkout/yakassa/result', function(req, res, next) 
         let userBody = user.body;
         filename = user.id + '.pdf';
         userBody.payment.notification = req.body.object;
+        userBody.payment.status = req.body.object.status;
+        userBody.payment.paid = req.body.object.paid;
         return user.setBody(userBody);
       })
       .then((result)=>{
