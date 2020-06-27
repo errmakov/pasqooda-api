@@ -7,6 +7,29 @@ const assert = chai.assert;
 
 let payIDset = ['26838588-000f-5000-8000-195835613e4c'];
 let userIDset = ['2020-06-26-08-44-11_2995'];
+let notificationSet = {
+    id: '2687f8df-000f-5000-8000-18a8fab0b9a5',
+    status: 'succeeded',
+    paid: true,
+    amount: { value: '300.00', currency: 'RUB' },
+    authorization_details: { rrn: '310729677386', auth_code: '676407' },
+    captured_at: '2020-06-26T12:08:58.711Z',
+    created_at: '2020-06-26T12:07:59.608Z',
+    description: '???????? ?????',
+    metadata: { scid: '1825012' },
+    payment_method: {
+      type: 'bank_card',
+      id: '2687f8df-000f-5000-8000-18a8fab0b9a5',
+      saved: false,
+      card: {foo: 'barcard'},
+      title: 'Bank card *4444'
+    },
+    receipt_registration: 'pending',
+    recipient: { account_id: '721540', gateway_id: '1738524' },
+    refundable: true,
+    refunded_amount: { value: '0.00', currency: 'RUB' },
+    test: true
+  };
 
 it("User object has database handler", function(done) {
     let user = new User({});
@@ -65,12 +88,19 @@ it("User.getByID() with incorrect ID comes rejected", function(done) {
 })
 
 
-it("user.downloadPDF for invalid user comes rejected", function(done) {
-    User.getByPayID('foobar')
+it("user.setBody() return becomes resolved with new body object", function(done) {
+    User.getByID(userIDset[0])
     .then((user)=>{
-        return user.downloadPDF();
+        let ubody = user.body;
+        ubody.payment.notification = notificationSet;
+        return user.setBody(ubody);
+    })
+    .then((body)=>{
+        
+        assert.isObject(body);
+        done();
     })
     .catch((err)=>{
-        done();
+        done(err);
     })
 })

@@ -39,6 +39,14 @@ let helpers = {
         return result;
     },
 
+    prepareBuyerNotice(){
+        let result = '';
+        
+        result = 'Ваше заявление готово!\n\n Теперь его нужно распечатать, подписать и отправить в арбитражный суд. \n\n --\n С любовью к вашим долгам, Паскуда';
+        
+        return result;
+    },
+
     prepareNotice(src) {
         let result = '';
         //console.log(src);

@@ -89,6 +89,23 @@ class User {
       console.log('Hello world');
     }
 
+    setBody(newbody) {
+  
+      return new Promise((resolve, reject)=>{
+        User.db()
+        .then((dbh)=>{
+          return dbh.collection('users').doc(this.id).set(newbody); 
+        })
+        .then((result)=>{
+            this.body = newbody
+            resolve(this.body);
+        })
+        .catch((err)=>{
+          reject(err);
+        })
+        
+      })
+    }
 
 }
 

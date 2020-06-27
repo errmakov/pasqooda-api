@@ -229,3 +229,7 @@ for (let i in arbitrarySet) {
   })
 }
 
+it("helpers.prepareBuyerNotice is not empty", function() {
+  return assert.isNotEmpty(helpers.prepareBuyerNotice());
+})
+

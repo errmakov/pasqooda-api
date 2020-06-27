@@ -151,14 +151,70 @@ expressWorker.post('/user/add', function(req, res, next) {
 
 
 expressWorker.post('/webhook/checkout/yakassa/result', function(req, res, next) {
-  console.log('Hit /webhook/checkout/yakassa/result post');
-  console.log('Request body: ', req.body);
-  res.json({res: 'OK'});
-  /*
-    Получить из хука ИД платежа и статус
-    Сходить в базу, найти платеж и обновить статус
-    Если статус ОПЛАЧЕНО, то отправить письмо на почту клиенту
-  */
+  try {
+    console.log('Hit /webhook/checkout/yakassa/result post');
+    // req.body = {
+    //   type: 'notification',
+    //   event: 'payment.succeeded',
+    //   object: {
+    //     id: '2687f8df-000f-5000-8000-18a8fab0b9a5',
+    //     status: 'succeeded',
+    //     paid: true,
+    //     amount: { value: '300.00', currency: 'RUB' },
+    //     authorization_details: { rrn: '310729677386', auth_code: '676407' },
+    //     captured_at: '2020-06-26T12:08:58.711Z',
+    //     created_at: '2020-06-26T12:07:59.608Z',
+    //     description: '???????? ?????',
+    //     metadata: { scid: '1825012' },
+    //     payment_method: {
+    //       type: 'bank_card',
+    //       id: '2687f8df-000f-5000-8000-18a8fab0b9a5',
+    //       saved: false,
+    //       card: {foo: 'barcard'},
+    //       title: 'Bank card *4444'
+    //     },
+    //     receipt_registration: 'pending',
+    //     recipient: { account_id: '721540', gateway_id: '1738524' },
+    //     refundable: true,
+    //     refunded_amount: { value: '0.00', currency: 'RUB' },
+    //     test: true
+    //   }
+    // }
+    console.log('Request body: ', req.body);
+    let filename = '';
+    if (req.body.object.status === 'succeeded') { //Если оплата успешно
+      User.getByPayID(req.body.object.id) //Сходить в базу, найти платеж и обновить статус
+      .then((user)=>{
+        let userBody = user.body;
+        filename = user.id + '.pdf';
+        userBody.payment.notification = req.body.object;
+        return user.setBody(userBody);
+      })
+      .then((result)=>{
+        let notifier = new Notifier(config.notifier);
+        let attachments = [{
+          filename: 'Заявление.pdf',
+          path: DIR + '/userfiles/' + filename,
+          contentType: 'application/pdf'
+        }]
+        notifier.sendEmail(config.notifier.address, 'Ваше заявление готово', helpers.prepareBuyerNotice(), attachments)
+        .then((result)=>{
+          console.log('User noticed with pdf');
+          res.json({res: 'OK'});  
+        })
+        .catch((e)=>{
+          throw(e);
+        })
+      })
+      .catch((e)=>{
+        console.log(e)
+      })
+    }
+    
+  } catch (e) {
+    console.log(e);
+  }
+  
 });
 
 expressWorker.post('/checkout/status', function(req, res, next) {
