@@ -10,6 +10,7 @@ class Payment {
       this._api = options.api;
       this._secret = options.secret;
       this._shopid = options.shopid;
+      this._baseUrl = options.baseUrl; //no trailing slash
     }
     do() {
       return new Promise((resolve, reject)=>{
@@ -21,7 +22,7 @@ class Payment {
           "capture": true,
           "confirmation": {
             "type": "redirect",
-            "return_url": "http://localhost:8082/checkout/result"
+            "return_url": this._baseUrl + "/checkout/result"
           },
           "description": this._orderDescription,
           "receipt": {
@@ -37,7 +38,7 @@ class Payment {
                   "value": this._value,
                   "currency": "RUB"
                 },
-                "vat_code": "2",
+                "vat_code": "3",
                 "payment_mode": "full_prepayment",
                 "payment_subject": "commodity"
               }

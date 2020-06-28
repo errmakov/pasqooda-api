@@ -266,6 +266,7 @@ expressWorker.post('/checkout/newpayment', function(req, res, next) {
   payDetails.api = config.yakassa.api;
   payDetails.secret = config.yakassa.secret;
   payDetails.shopid = config.yakassa.shopid;
+  payDetails.baseUrl = config.baseUrl;
 
   let payment = new Payment(payDetails);
   payment.do()

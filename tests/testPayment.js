@@ -67,3 +67,14 @@ it("Get status of payment by invalid PAY ID becomes rejected promise", function(
         done()
     })
 })
+
+it("payment with valid PAY ID contains ._baseUrl for redirect", function(done) {
+    
+    let payDetails = paySet[0];
+    payDetails.api = config.yakassa.api;
+    payDetails.secret = config.yakassa.secret;
+    payDetails.shopid = config.yakassa.shopid;
+    payDetails.baseUrl = config.yakassa.shopid;
+    let payment = new Payment(payDetails);
+    assert.isNotEmpty(payment._baseUrl);
+})
