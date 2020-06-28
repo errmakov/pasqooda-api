@@ -47,6 +47,20 @@ let helpers = {
         return result;
     },
 
+    /**
+     * Returns string with notification for buyer with order number and pay confirmation ling
+
+     * @param  {object} noticeData Object {orderID: "string with order id", url: "string with url to confirm (make finalisation) of payment"}
+     * @returns {string} Body of notification
+     */
+    preparePaylinkNotice(noticeData){
+        let result = '';
+        
+        result = 'Ваше заявление на банкротство почти готово. Осталось только оплатить. \nНомер заказа: ' + noticeData.orderID + '\nСсылка на оплату: ' + noticeData.url + '\nЕсли что-то пойдет не так - дайте нам знать ответным письмом.\n\n --\n С любовью к вашим долгам, Паскуда';
+        
+        return result;
+    },
+
     prepareNotice(src) {
         let result = '';
         //console.log(src);

@@ -182,11 +182,13 @@ expressWorker.post('/webhook/checkout/yakassa/result', function(req, res, next) 
     // }
     console.log('Request body: ', req.body);
     let filename = '';
+    let userEmail = '';
     if (req.body.object.status === 'succeeded') { //Если оплата успешно
       User.getByPayID(req.body.object.id) //Сходить в базу, найти платеж и обновить статус
       .then((user)=>{
         let userBody = user.body;
         filename = user.id + '.pdf';
+        userEmail = user.body.registration.contact_email;
         userBody.payment.notification = req.body.object;
         userBody.payment.status = req.body.object.status;
         userBody.payment.paid = req.body.object.paid;
@@ -199,7 +201,7 @@ expressWorker.post('/webhook/checkout/yakassa/result', function(req, res, next) 
           path: DIR + '/userfiles/' + filename,
           contentType: 'application/pdf'
         }]
-        notifier.sendEmail(config.notifier.address, 'Ваше заявление готово', helpers.prepareBuyerNotice(), attachments)
+        notifier.sendEmail(userEmail, 'Ваше заявление готово', helpers.prepareBuyerNotice(), attachments)
         .then((result)=>{
           console.log('User noticed with pdf');
           res.json({res: 'OK'});  
@@ -268,7 +270,16 @@ expressWorker.post('/checkout/newpayment', function(req, res, next) {
   let payment = new Payment(payDetails);
   payment.do()
   .then((response)=>{
-    //console.log('Response:', response);
+    console.log('Response:', response);
+    let notifier = new Notifier(config.notifier);
+    
+    notifier.sendEmail(payDetails.customerEmail, 'Заказ ждет оплаты', helpers.preparePaylinkNotice({orderID: response.id, url: response.confirmation.confirmation_url}))
+    .then((result)=>{
+      console.log('User noticed with paylink');
+    })
+    .catch((e)=>{
+      throw(e);
+    })
     res.json(response);
   })
   .catch((err)=>{

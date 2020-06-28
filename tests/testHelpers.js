@@ -233,3 +233,20 @@ it("helpers.prepareBuyerNotice is not empty", function() {
   return assert.isNotEmpty(helpers.prepareBuyerNotice());
 })
 
+it("helpers.preparePaylinkNotice returns string contains order (payment) id", function() {
+  let response = {id: '123545', confirmation: {confirmation_url: 'foo.bar'}}
+  let noticeData = {orderID: response.id, url: response.confirmation.confirmation_url}
+  let regexID = new RegExp(response.id);
+  let regMatch = helpers.preparePaylinkNotice(noticeData).match(regexID);
+  return assert.deepEqual(regMatch[0], response.id);
+})
+
+it("helpers.preparePaylinkNotice returns string contains url for payment confirmation", function() {
+  let response = {id: '123545', confirmation: {confirmation_url: 'foo.bar'}}
+  let noticeData = {orderID: response.id, url: response.confirmation.confirmation_url}
+  let regexURL = new RegExp(response.confirmation.confirmation_url);
+  let regMatch = helpers.preparePaylinkNotice(noticeData).match(regexURL);
+  return assert.deepEqual(regMatch[0], response.confirmation.confirmation_url);
+})
+
+
