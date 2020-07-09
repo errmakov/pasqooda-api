@@ -194,7 +194,7 @@ let helpers = {
     
                 result+="\r\n";
                 let docDate = new Date(Date.parse(items[i].document.date));
-                result+="Документ: " + items[i].document.name + ' ' + items[i].document.number + helpers.convertDate(docDate);
+                result+="Документ: " + items[i].document.name + ' ' + items[i].document.number + ' от ' helpers.convertDate(docDate);
 
                 result+="\r\n";
     
