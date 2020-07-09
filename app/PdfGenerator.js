@@ -67,6 +67,65 @@ class PdfGenerator {
       return result;
     } 
     
+    /**
+    * Inflect contract name for PDF based on data object passed into constructor    
+    * @param {string} doc Document object {name: 'foo', number: 'bar', date: 'yyyy-mm-dd'}
+    * @param {string} to Case. One of: nominative, genitive, dative, accusative, instrumental, prepositional.
+    * @returns {string}
+    */
+    inflectContract(doc, to = 'genetive') {
+      //all cases: nominative, genitive, dative, accusative, instrumental, prepositional.
+      // ALL Docs:
+      // Договор займа
+      // Кредитный договор
+      // Договор купли-продажи
+      // Договор найма (аренды)
+      // Расписка
+      let result = '';
+      try {
+
+        let caseSet = {
+          'Договор займа': {
+            'genetive': 'Договора займа'
+          },
+          'Кредитный договор': {
+            'genetive': 'Кредитного договора'
+          },
+          'Договор купли-продажи': {
+            'genetive': 'Договора купли-продажи'
+          },
+          'Договор найма (аренды)': {
+            'genetive': 'Договора найма (аренды)'
+          },
+          'Расписка': {
+            'genetive': 'Расписки'
+          }
+        }
+        for (let i in caseSet) {
+          if (i === doc.name) {
+            for (let k in caseSet[i]) {
+              if (k === to) {
+                let docDate = new Date(Date.parse(doc.date));
+                doc.number = (doc.number) ? ' ' + doc.number : '';
+                result = caseSet[i][k] + doc.number + ' от ' + helpers.convertDate(docDate);
+              }
+            }
+          }
+        }
+
+        if (result === '') {
+          let docDate = new Date(Date.parse(doc.date));
+          doc.number = (doc.number) ? ' ' + doc.number : '';
+          result =doc.name + doc.number + ' от ' + helpers.convertDate(docDate);
+        }
+        
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
+      return result;
+    }
+
     creditorsDetailed() {
       let result = '';
       let li = 0;
@@ -75,7 +134,7 @@ class PdfGenerator {
           let creditor = this._data.creditors[i]
           let num = parseInt(i) + 1;
           let totalCreditorSum = parseFloat(creditor.credit) + parseFloat(creditor.penalties) + parseFloat(creditor.interest);
-          result += (li + num) + '. Неспособность удовлетворить требования кредитора ' + num + ' по денежным обязательствам в сумме ' + totalCreditorSum.toFixed(2) + ' ' + this.sumToString(totalCreditorSum) + ', вытекающим из ' + creditor.document + '\n';
+          result += (li + num) + '. Неспособность удовлетворить требования кредитора ' + num + ' по денежным обязательствам в сумме ' + Math.floor(totalCreditorSum) + ' ' + this.sumToString(totalCreditorSum) + ', вытекающим из ' + this.inflectContract(creditor.document) + '\n';
           this._globalNum = (li + num);
         };
       //console.log(result);
@@ -94,10 +153,11 @@ class PdfGenerator {
         result += '\n' + parseInt(this._globalPropNum) + '. Дебиторская задолженность: \n';
         for (let i in this._data.debitors) {
           let debitor = this._data.debitors[i];
-          let debt = parseInt(debitor.credit) + parseInt(debitor.interest) + parseInt(debitor.penalties);
+          let debt = parseFloat(debitor.credit) + parseFloat(debitor.interest) + parseFloat(debitor.penalties);
+          debt = debt.toFixed(2);
           result += helpers.abcList(i) + ') Должник ' + debitor.name;
-          result += ', задолженность в размере ' + debt + ' ' + this.sumToString(debt) + ' включая сумму основного долга, процентов и штрафов';
-          result += ((debitor.document !== '') && (debitor.document !== null)) ? ', вытекающая из ' + debitor.document + '.': '.';
+          result += ', задолженность в размере ' + Math.floor(debt) + ' ' + this.sumToString(debt) + ' включая сумму основного долга, процентов и штрафов';
+          result += ((debitor.document !== '') && (debitor.document !== null)) ? ', вытекающая из ' + this.inflectContract(debitor.document) + '.': '.';
           result += '\n'
         }
       }
@@ -148,7 +208,7 @@ class PdfGenerator {
         //result += helpers.abcList(i) + '. ';
         result += movable.name !== '' ? movable.name + ', ' : '';
         result += (movable.vin !== '') && (movable.vin!==null) ? 'VIN ' + movable.vin + ', ': '';
-        result += movable.price !== '' ? 'стоимость ' + movable.price : '';
+        result += movable.price !== '' ? 'стоимость ' + Math.floor(movable.price) + ' ' + this.sumToString(movable.price) : '';
         result += '; ';
       };
 
@@ -164,7 +224,7 @@ class PdfGenerator {
       if (this._penaltiesTotal === 0) return result;
 
       this._globalNum+=1;
-      result = this._globalNum + '. Административные штрафы и установленные уголовным законодательством штрафы в сумме ' + this._penaltiesTotal + ' ' + this._penaltiesTotalString + '.';
+      result = this._globalNum + '. Административные штрафы и установленные уголовным законодательством штрафы в сумме ' + Math.floor(this._penaltiesTotal) + ' ' + this._penaltiesTotalString + '.';
       //console.log(result);
       return result;
     } 
@@ -224,7 +284,7 @@ class PdfGenerator {
         result += result !== '' ? ', ' : '';
         result += realty.address !== '' ? 'адрес: ' + realty.address : '';
         result += result !== '' ? ', ' : '';
-        result += realty.price !== '' ? 'стоимость ' + realty.price : '';
+        result += realty.price !== '' ? 'стоимость ' + Math.floor(realty.price) + ' ' + this.sumToString(realty.price) : '';
         result += '; ';
       };
 //      console.log(result);
@@ -238,7 +298,7 @@ class PdfGenerator {
       if (this._taxesTotal === 0) return result;
 
       this._globalNum+=1;
-      result = this._globalNum + '. Обязательства по уплате обязательных платежей в сумме ' + this._taxesTotal + ' ' + this._taxesTotalString + '. Реестр недоимок, пени, штрафов прилагается.';
+      result = this._globalNum + '. Обязательства по уплате обязательных платежей в сумме ' + Math.floor(this._taxesTotal) + ' ' + this._taxesTotalString + '. Реестр недоимок, пени, штрафов прилагается.';
       //console.log(result);
       return result;
     } 
@@ -248,6 +308,7 @@ class PdfGenerator {
     * See petrovich.js for more details.
     * @param {object} person  Object contains name {last: 'Doe', first: 'John', middle: 'Foo', gender: 'male'} 
     * @param {string} to Case. One of: nominative, genitive, dative, accusative, instrumental, prepositional.
+    * @returns {string}
     */
     inflect(person, to = 'dative') {
       let fullname = '';
@@ -402,7 +463,7 @@ class PdfGenerator {
             first: this._data.registration.contact_name_name,
             middle: this._data.registration.contact_name_middle,
             last: this._data.registration.contact_name_second,
-            gender: this._data.registration.contact_name_gender
+            gender: this._data.registration.contact_gender
           }
           doc.pipe(fs.createWriteStream(pdfFileName));
           doc
@@ -421,21 +482,21 @@ class PdfGenerator {
           .font(DIR + '/fonts/Roboto-Bold.ttf')
           .text('\n\nЗаявление\n о признании банкротом\n\n', 72, undefined, {align: 'center'})
           .font(DIR + '/fonts/Roboto-Regular.ttf')
-          .text('По состоянию на ' + this.dateToString(new Date()) + ' размер требований, предъявленных к гражданину Российской Федерации ' + this.inflect(person) + ', паспорт: ' + this.passport(this._data.registration.pass_number)+ ', выдан ' + this._data.registration.pass_emitter + ' ' + this.dateToString(new Date(this._data.registration.pass_date))+ ', составляет ' + this._creditTotal.toFixed(2) + ' ' + this._creditTotalString + ', в том числе:', 36, undefined, {align: 'left', indent:18})
+          .text('По состоянию на ' + this.dateToString(new Date()) + ' размер требований, предъявленных к гражданину Российской Федерации ' + this.inflect(person) + ', паспорт: ' + this.passport(this._data.registration.pass_number)+ ', выдан ' + this._data.registration.pass_emitter + ' ' + this.dateToString(new Date(this._data.registration.pass_date))+ ', составляет ' + Math.floor(this._creditTotal) + ' ' + this._creditTotalString + ', в том числе:', 36, undefined, {align: 'left', indent:18})
           
           .text(this.creditorsDetailed(), 36, undefined, {align: 'left', indent:18})
           .text(this.taxesDetailed(), 36, undefined, {align: 'left', indent:18})
           .text(this.penaltiesDetailed(), 36, undefined, {align: 'left', indent:18})
           .text(this.propertyDetailed(), 36, undefined, {align: 'left', indent:18})
           .text(this.debitorsDetailed(), 36, undefined, {align: 'left', indent:18})
-          .text('\nФактически, по состоянию на дату подачи заявления, общая сумма долгов должника перед кредиторами, включая задолженность по обязательным платежам, превышает стоимость принадлежащего ему имущества и имущественных прав на ' + this._debitorGap  + ' ' + this._debitorGapString + '.', 36, undefined, {align: 'left', indent:18})
+          .text('\nФактически, по состоянию на дату подачи заявления, общая сумма долгов должника перед кредиторами, включая задолженность по обязательным платежам, превышает стоимость принадлежащего ему имущества и имущественных прав на ' + Math.floor(this._debitorGap)  + ' ' + this._debitorGapString + '.', 36, undefined, {align: 'left', indent:18})
           .text('\n' + this.creditAnalysis(), 36, undefined, {align: 'left', indent:18})
-          .text('\nДолжник согласен на привлечение следующих лиц, обеспечивающих исполнение возложенных на финансового управляющего обязанностей:____________________,____________________, ____________________', 36, undefined, {align: 'left', indent:18})
-          .text('\nМаксимальный размер осуществляемых за счет заявителя расходов финансового управляющего на оплату услуг привлекаемых лиц составляет 30000 ' + this.sumToString(30000) + '.', 36, undefined, {align: 'left', indent:18})
+          // .text('\nДолжник согласен на привлечение следующих лиц, обеспечивающих исполнение возложенных на финансового управляющего обязанностей:____________________,____________________, ____________________', 36, undefined, {align: 'left', indent:18})
+          .text('Максимальный размер осуществляемых за счет заявителя расходов финансового управляющего на оплату услуг привлекаемых лиц составляет 30000 ' + this.sumToString(30000) + '.', 36, undefined, {align: 'left', indent:18})
           .text('\nДенежные средства на выплату на возмещение расходов финансового управляющего на оплату услуг привлекаемых лиц в указанном размере внесены должником в депозит суда. ', 36, undefined, {align: 'left', indent:18})
           .text('\nНа основании вышеизложенного и руководствуясь ст. ст. 213.1-213.4 Федерального закона от 26.10.2002 N 127-ФЗ "О несостоятельности (банкротстве)", ст. ст. 223-224 Арбитражного процессуального кодекса Российской Федерации, прошу: ', 36, undefined, {align: 'left', indent:18})
           .text('\nПризнать гражданина Российской Федерации ' + this.inflect(person, 'genitive') + ', паспорт:' + this.passport(this._data.registration.pass_number)+ ', выдан ' + this._data.registration.pass_emitter + ' ' + this.dateToString(new Date(this._data.registration.pass_date))+ ', несостоятельным(банкротом). ', 36, undefined, {align: 'left', indent:18})
-          .text('\nУтвердить финансового управляющего из числа членов Саморегулируемой организации арбитражных управляющих "________________", ОГРН _______, ИНН _______, КПП ______, адрес: _______________________________.', 36, undefined, {align: 'left', indent:18})
+          .text('\nУтвердить финансового управляющего из числа членов Саморегулируемой организации арбитражных управляющих: Ассоциация «Межрегиональная саморегулируемая организация профессиональных арбитражных управляющих» (МСО ПАУ), ОГРН 1037705027249, ИНН 7705494552, КПП 770501001, адрес:  119071, г. Москва, Ленинский пр-т, д. 29, стр. 8.', 36, undefined, {align: 'left', indent:18})
           doc.end();
           console.log('Saved: ', pdfFileName);
           resolve(true);

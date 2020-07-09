@@ -1,0 +1,1591 @@
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '268cc5ed-000f-5000-8000-1ba9126596b1',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=268cc5ed-000f-5000-8000-1ba9126596b1'
+  },
+  created_at: '2020-06-30T03:31:57.699Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Getting court for:  Тольятти, ул офицерская, 4б
+Saved:  /apps/pasqooda-api/app/userfiles/2020-06-30-03-31-57_5198.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '268cc5ed-000f-5000-8000-1ba9126596b1' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  268cc5ed-000f-5000-8000-1ba9126596b1
+User then:  User {
+  id: '2020-06-30-03-31-57_5198',
+  payid: '268cc5ed-000f-5000-8000-1ba9126596b1',
+  body: {
+    timestamp: 1593487917236,
+    creditors: [ [Object] ],
+    recaptchaToken: '03AGdBq26Edgcp8LtfbKiAWg9x6ItrDMUizCs_AeVvb0l7brTmmnP26metNzyJK083s6U64a9FlNOTXOWaUs7lAJGxzWjJTVEcyIXd8pitA3tCJrnSL3qHWCkaiU87AJub2uXhoWxbZ664gKcO-YCmJTJ00DL0b2dj76nPwW9sSjBbZsqp53pWhv9zlsBIyCOAzDQ1p4fBkyQ5WTKaaCbap6iehRKS1856cx7u8RZ4_XW0ZBv9cDXQSQNiXlfhuwo_ulncVGPYb_v-jmWfq88o-k7_EmUO8IBAV1LNrQ-RhS1nJFCG035aepKQB0i4ipqoK_WnHl1Thw3F_ScdbK4zgcrte10lMKKkXgs9iRmXXTk5rvXa49QYnCa9C9Grt0YDDlinBN6Zh3yAOycIUMeWQsc_fmtHkrcfllqhDtmH6StlvtI9NQ0j5DzUUoyryQQD5lKuWovmMQWU',
+    filename: '2020-06-30-03-31-57_5198.pdf',
+    registration: {
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'no',
+      hasPenalties: 'no',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'no',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2010-10-08',
+      contact_gender: 'male',
+      hasMovables: 'no',
+      contact_name_middle: 'Владимирович',
+      regadress: 'Тольятти, ул офицерская, 4б',
+      pass_date_menu: false,
+      hasRealty: 'no',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805'
+    },
+    payment: {
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '268cc5ed-000f-5000-8000-1ba9126596b1',
+      created_at: '2020-06-30T03:31:57.699Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object]
+    }
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '268f6caf-000f-5000-9000-117f91c07dd9',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=268f6caf-000f-5000-9000-117f91c07dd9'
+  },
+  created_at: '2020-07-02T03:48:00.001Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Getting court for:  Тольятти, ул офицерская 4б
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-02-03-48-00_629.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '268f6caf-000f-5000-9000-117f91c07dd9' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  268f6caf-000f-5000-9000-117f91c07dd9
+User then:  User {
+  id: '2020-07-02-03-48-00_629',
+  payid: '268f6caf-000f-5000-9000-117f91c07dd9',
+  body: {
+    timestamp: 1593661679543,
+    creditors: [ [Object] ],
+    recaptchaToken: '03AGdBq27xxqMrKT_-aKaOyv1ko103bWcBuJhHhFxr7wpFp9KehSpCRziNz52C8AX66vV0hBP8tjInbzX9DyIUdAuv1MoGdfrFNZiYEA9JiHjKsd3qxV_63C6KSlNkUPqOwt_fmUytRHBFh7vI33VSrHhujWyVshxM0h0-B8rGJcVikUV--woMiFsQ97oU6xJTdb5FTiYWJ-ImTswA9hqhWiNb8q7lTc6pdpOm3UoqJargkWU8Iz_IBqEdJWyd-BzOQYMktjzHdLXUNJcvoVHgm2tLTnfPohXtXhwAHnNM226KUDd3b_gehXr5scZJmKOvIT-laFxrcCkE14N-c8RvumHnGavunt1N3y5V44rjIN3syVS5ARPDD0bIiHnkHtf0wuVeR66gBNCyOBfz8QtFntsQbBk-Mvoaa5ORjOi0P4wAM3jtdiZiEUfQqECdLmIg2KWopmxOAkyl',
+    filename: '2020-07-02-03-48-00_629.pdf',
+    registration: {
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'no',
+      contact_name_middle: 'Владимирович',
+      regadress: 'Тольятти, ул офицерская 4б',
+      pass_date_menu: false,
+      hasRealty: 'no',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'no',
+      hasPenalties: 'no',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'no'
+    },
+    payment: {
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '268f6caf-000f-5000-9000-117f91c07dd9',
+      created_at: '2020-07-02T03:48:00.001Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object]
+    }
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '269517cc-000f-5000-8000-16b4931d9805',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=269517cc-000f-5000-8000-16b4931d9805'
+  },
+  created_at: '2020-07-06T10:59:24.828Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '269517f9-000f-5000-a000-1bc7e4e2198b',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=269517f9-000f-5000-a000-1bc7e4e2198b'
+  },
+  created_at: '2020-07-06T11:00:10.454Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+{}
+running
+Express listening on:8086
+{}
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2695186b-000f-5000-a000-1ad4cd93f2f3',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2695186b-000f-5000-a000-1ad4cd93f2f3'
+  },
+  created_at: '2020-07-06T11:02:03.993Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '269519e2-000f-5000-8000-17161db5da2f',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=269519e2-000f-5000-8000-17161db5da2f'
+  },
+  created_at: '2020-07-06T11:08:18.179Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Владимирович',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '26951b23-000f-5000-8000-19fed28d1a05',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=26951b23-000f-5000-8000-19fed28d1a05'
+  },
+  created_at: '2020-07-06T11:13:39.731Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9, кв 101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-06-11-13-40_4340.pdf
+Response sended
+Hit notify post
+User noticed with paylink
+Hit /checkout/status post
+Request body:  { payid: '26951b23-000f-5000-8000-19fed28d1a05' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  26951b23-000f-5000-8000-19fed28d1a05
+User then:  User {
+  id: '2020-07-06-11-13-40_4340',
+  payid: '26951b23-000f-5000-8000-19fed28d1a05',
+  body: {
+    filename: '2020-07-06-11-13-40_4340.pdf',
+    registration: {
+      contact_name_middle: 'Владимирович',
+      regadress: 'Тольятти, бульвар Королева 9, кв 101',
+      pass_date_menu: false,
+      hasRealty: 'no',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'no',
+      hasPenalties: 'no',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'no',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'no'
+    },
+    payment: {
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '26951b23-000f-5000-8000-19fed28d1a05',
+      created_at: '2020-07-06T11:13:39.731Z',
+      recipient: [Object],
+      status: 'succeeded'
+    },
+    timestamp: 1594034017923,
+    creditors: [ [Object] ],
+    recaptchaToken: '03AGdBq24TBzvFddHU6diNDi2v37CDuMFbkVQTl0GZOg65dTv11u-UD5HpxouS3rqXECiY3jQhfMu11iyglgQmR4qHhxQDQoxzeodWSoowXcSm7Z_8C9Eiwev6lup2xBtNvoN_DpKw6h3piVZxg6qI0F77t961aMhG1wVHKKG_qJeHdTAdugvsZ8_-uzdAH9mS2mppSdOaawRZKIrMTelHzPNVQMdCSAmfcPGlhSYRIJMEUF1xCn_seD8-7IBRTezqHYg9v4auqwIG84amc0uD0k91XKPl7GYUEcIfHVZ3HtYXwGHBsCLzJHonKid6POAU8WkGxIef1-MBQCjBOT1HDYUnj1G6AMPATSb7rHvO85RRT8msDGRvUOrkPy4mFNE42r5NqgRCvWpQ1AksZ_uSWWakB1l_sKYBQQ'
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+{}
+{}
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '269790d7-000f-5000-9000-1354207e7ef6',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=269790d7-000f-5000-9000-1354207e7ef6'
+  },
+  created_at: '2020-07-08T08:00:23.187Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+User noticed with paylink
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-08-00-24_4844.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '269790d7-000f-5000-9000-1354207e7ef6' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  269790d7-000f-5000-9000-1354207e7ef6
+User then:  User {
+  id: '2020-07-08-08-00-24_4844',
+  payid: '269790d7-000f-5000-9000-1354207e7ef6',
+  body: {
+    filename: '2020-07-08-08-00-24_4844.pdf',
+    realty: [ [Object] ],
+    registration: {
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes'
+    },
+    movable: [ [Object] ],
+    payment: {
+      paid: true,
+      id: '269790d7-000f-5000-9000-1354207e7ef6',
+      created_at: '2020-07-08T08:00:23.187Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object]
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594195220981,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ],
+    recaptchaToken: '03AGdBq25pvHyN9bw0LD2ZbWUNtph_Poh12SPiqPN-d_63SykNvYVqV_eXpYwDYfs884xrsaAVGmFeu2LIdgcGLPwdiKjJG4MNGEYXTI1ZCEUSP8Q9j4rerIHOIDV6_Bd5BG1aeIbIrQs_kRY6raet52lGNSwtG6BqUzsjtPqL5JtVFOsvPB2IyHbLQhMnXpbBCYsEfu4vggrlng0c7wL_GbWjMpPHA0fBUNJL0-4HujdaLUd50sEBNqhVbq9gO6ypO08pmxryAFj8STsmzftROS4IiBFHN-s0CjecOXTFWE54OMmOZ4-S9VHC-lEMF3-cKUxYwbD-Weg0tSOBxZfbXpx_-TeBfn4NmkZjNcTBc02SirserCrwDpI3e3sa3vWvCvVjAA1gfA_pXlxEvnKRA7i6-ZLI3LtCHA'
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '269799b2-000f-5000-a000-1e6c23aab2f0',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=269799b2-000f-5000-a000-1e6c23aab2f0'
+  },
+  created_at: '2020-07-08T08:38:10.616Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-08-38-11_5203.pdf
+Response sended
+User noticed with paylink
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '269799b2-000f-5000-a000-1e6c23aab2f0' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  269799b2-000f-5000-a000-1e6c23aab2f0
+User then:  User {
+  id: '2020-07-08-08-38-11_5203',
+  payid: '269799b2-000f-5000-a000-1e6c23aab2f0',
+  body: {
+    recaptchaToken: '03AGdBq26F0zqLioB2muIPx8DpPiq2X5-DIImcn9EHwjXC5iOh4I0FoMru-SHXbT0l7C2HwCQEtdAshuQX1lHOMmYpBY-8gJgK71Y7yc9vLYD40ddNBJdq8LSf7-uhCuGcLarPWODX1fiVGoxgbHZtDlH3Fj35e7DA0vnAZ3AWegHpWhrqjmqp-3a_wVOWB79WJrU-HXHYo6RxMNM7TADfQaaEMg9h8y2mG5qBIFIlQkPrJQIgmjTTPm51IV-6Yb5MFYP70O8xmlFgqhuN2LnKzPYzHFOoEjTmzNt8zSqC6_SwVri0L1H0cUj5rlW4cVSir8kjOzha95Iu5Q1YsiGNTsiAZxrdgpjUJ9BQWbXJaBLXsnPu6swnEfeCkcwYp_F3EzFk4nzqdVd5',
+    filename: '2020-07-08-08-38-11_5203.pdf',
+    realty: [ [Object] ],
+    registration: {
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru'
+    },
+    movable: [ [Object] ],
+    payment: {
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '269799b2-000f-5000-a000-1e6c23aab2f0',
+      created_at: '2020-07-08T08:38:10.616Z',
+      recipient: [Object],
+      status: 'succeeded'
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594197484877,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '26979aaa-000f-5000-8000-1a8c564c6b63',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=26979aaa-000f-5000-8000-1a8c564c6b63'
+  },
+  created_at: '2020-07-08T08:42:18.851Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+User noticed with paylink
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-08-42-21_6704.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '26979aaa-000f-5000-8000-1a8c564c6b63' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  26979aaa-000f-5000-8000-1a8c564c6b63
+User then:  User {
+  id: '2020-07-08-08-42-21_6704',
+  payid: '26979aaa-000f-5000-8000-1a8c564c6b63',
+  body: {
+    recaptchaToken: '03AGdBq26PMF-cDHoblidABILNgwf9KpSxY0uteTkc4MtZDq6EefINVJqSUBmvkazv4S46vbDoU90cKAP_v4kZ-thHfyx8dcVt-E6Ho1szaWUYCeki6xvgSsFy_erNCXZiE18pxL7NWx7KQbz-wXxeqi5hXB9DYnaZzKl4ItRVTEiQIlXpYijkJYsLN5F0qYVExnb46Nxq0Tc0VZSge0g54x2OOLn8YcgDbOG5JJBRkl2pNROqfOb7LzMkwTwc-ag_XgeHKhgxjWujFDxUdAwrO_elyryWVnM629mewrUoGNY92UnQujFCxZshQCH-n7A8vMkWpYj_MXEVhHbrg6kyZ-YuEr05fCYMX5Xg81uDX1jWBXTFIJPlwwkAeyrA5mZ_dZMuayeql4m8',
+    filename: '2020-07-08-08-42-21_6704.pdf',
+    realty: [ [Object] ],
+    registration: {
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes'
+    },
+    movable: [ [Object] ],
+    payment: {
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '26979aaa-000f-5000-8000-1a8c564c6b63',
+      created_at: '2020-07-08T08:42:18.851Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object]
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594197736489,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '26979d4e-000f-5000-a000-19a6ad63cc57',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=26979d4e-000f-5000-a000-19a6ad63cc57'
+  },
+  created_at: '2020-07-08T08:53:34.378Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+User noticed with paylink
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-08-53-35_8399.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '26979d4e-000f-5000-a000-19a6ad63cc57' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  26979d4e-000f-5000-a000-19a6ad63cc57
+User then:  User {
+  id: '2020-07-08-08-53-35_8399',
+  payid: '26979d4e-000f-5000-a000-19a6ad63cc57',
+  body: {
+    recaptchaToken: '03AGdBq278OVc2YBBg_-2ol_ZDVGisrQXLzXbS82dSGRlHFAvbTx2t9_5RxZa6qledpNjKt4Xqekx6k4c9neKr2z3jTFwIruAacJIHkSlyUZ9olf2O82pIuMwkyDzSKMk28Ycv0WYMWUMAz6NsYvwnx3U0RmflkpBsY2ozvAgcP2JK59RKmPv4xtfhyltdEdNpTVT0MSbDjmncvLdmDhhB5fVbhV06fIgx1LPCn3a-0JtZAkTPSiYOczSQ2rIY_fhrzDDGnVTWYyk7Vyi_S2juktRPDc0SGP4a1EkuQf5DI6BCoHRAGlVwwQagkGgvaS9iktYDT2--6uGlS4CiBRDBIUYhFN6jOSP-1ZQzeQVbjgDT8XWM6E-L_jDqNUPpJksAW1phEq17bhlM',
+    filename: '2020-07-08-08-53-35_8399.pdf',
+    realty: [ [Object] ],
+    registration: {
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru'
+    },
+    movable: [ [Object] ],
+    payment: {
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '26979d4e-000f-5000-a000-19a6ad63cc57',
+      created_at: '2020-07-08T08:53:34.378Z',
+      recipient: [Object],
+      status: 'succeeded'
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594198412944,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '26979fef-000f-5000-a000-1fe634373882',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=26979fef-000f-5000-a000-1fe634373882'
+  },
+  created_at: '2020-07-08T09:04:47.930Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+User noticed with paylink
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-09-04-48_2110.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '26979fef-000f-5000-a000-1fe634373882' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  26979fef-000f-5000-a000-1fe634373882
+User then:  User {
+  id: '2020-07-08-09-04-48_2110',
+  payid: '26979fef-000f-5000-a000-1fe634373882',
+  body: {
+    registration: {
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes'
+    },
+    movable: [ [Object] ],
+    payment: {
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '26979fef-000f-5000-a000-1fe634373882',
+      created_at: '2020-07-08T09:04:47.930Z',
+      recipient: [Object],
+      status: 'succeeded'
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594199086216,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ],
+    recaptchaToken: '03AGdBq26BCI60H0ynK6BbjUnUsyPo5I95X_ARWq7KQM-pGSGcXpovsQLreCJtdSu8pKBMOIZna3uVugWIgB1iY_nWg953E7-IUL8FfO0yE35MMy6eITluMoVhEEP_yTvutcPBBKx7MY2r5i7R_PUnuH90M9IRUCTJpNzu6F2K2CsCtUAs4SiqvZrot4FLzk9IR9hdK7CuILvHoNNh29x8BRngEbHuIyivjEPg-BhAtuu4xet4Nvgi9NU0w2ZE6R8xwy-hXwDEHASXqKumjDZ7-XDS7hUnUQZ5ffjfUzQZolKl26JOYb4-RqeXNkAp-sj4mNPTufvstQCv347nNSxYNZ_itmHwXYz3EczXcmHbUzJfRz35OwwUWJyZHLuBxN7gR6QjLdYNhpT2',
+    filename: '2020-07-08-09-04-48_2110.pdf',
+    realty: [ [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+Hit download
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2697c4ef-000f-5000-8000-18f1b96a62e5',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2697c4ef-000f-5000-8000-18f1b96a62e5'
+  },
+  created_at: '2020-07-08T11:42:39.668Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-11-42-40_7681.pdf
+Response sended
+Hit notify post
+User noticed with paylink
+Hit /checkout/status post
+Request body:  { payid: '2697c4ef-000f-5000-8000-18f1b96a62e5' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  2697c4ef-000f-5000-8000-18f1b96a62e5
+User then:  User {
+  id: '2020-07-08-11-42-40_7681',
+  payid: '2697c4ef-000f-5000-8000-18f1b96a62e5',
+  body: {
+    recaptchaToken: '03AGdBq27vFD6ieXC6i_qTvJfnCJstByB5sc-5b6c8aeUYE2lRyNEM9mG_k8P7vI7V1Qx4vy5TttuKsgrluLbFYdMdTNL9Vw2M5IBYfEkTIpiQz0j1SoZD1sDxmpMafQo1KyEkICOiHAg2MQJasKqo4wzS2Dtz0V6tgnsOg2T8feVXuegVKJfxDSc22C6fqJlXXKrQZfbJxS84BI6k0NUSMkhO_G_DSzx95Nd6Dr1eAf3I4MBx0wfePp7tTRORJZW6bHm8urg2mrsgxUZmo4pnzL3CptTaq4rNEwtRgnt2D0Jz4m9sM1kH0mf9jgVhhnel3QGF_3gGGlmzTI6a-d7irokjwW9o7phoxhatlBJWK6G24d9elcFF2atzbSih7vbFCAAqvlDLivZN',
+    filename: '2020-07-08-11-42-40_7681.pdf',
+    realty: [ [Object] ],
+    registration: {
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01'
+    },
+    movable: [ [Object] ],
+    payment: {
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '2697c4ef-000f-5000-8000-18f1b96a62e5',
+      created_at: '2020-07-08T11:42:39.668Z',
+      recipient: [Object],
+      status: 'succeeded'
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594208557798,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2697c67f-000f-5000-8000-1f3392962409',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2697c67f-000f-5000-8000-1f3392962409'
+  },
+  created_at: '2020-07-08T11:49:19.171Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+User noticed with paylink
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-11-49-20_3348.pdf
+Response sended
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '2697c67f-000f-5000-8000-1f3392962409' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  2697c67f-000f-5000-8000-1f3392962409
+User then:  User {
+  id: '2020-07-08-11-49-20_3348',
+  payid: '2697c67f-000f-5000-8000-1f3392962409',
+  body: {
+    registration: {
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01'
+    },
+    movable: [ [Object] ],
+    payment: {
+      id: '2697c67f-000f-5000-8000-1f3392962409',
+      created_at: '2020-07-08T11:49:19.171Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594208957441,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ],
+    recaptchaToken: '03AGdBq26nKUbtxSx1gYQwTWfR2iyBeIYQmxvhoBXhWvfbM7nho-uGRLUo733KF0ZfLAKYZsCMcV83TyJQ5uxoRUb-fchGWltGOIpgqzQOpxTRfd6bnmVM6_aQsF_IqqmI2cmARQ7m1zez3uxKVGOhjNoBnO-RxGW77LUiG1GWGNUmCcKa6a9_Q0tuL54GQtVcQZyATFAbIX-t8Q4Nj2Pseeat1bhtlQXXhSU23YU_7YMIPb8gT2XouYZpz2J3Ecm-WPpAMKQGmSLMy9Xa8I0m0gvFMi1jACfznDPxtz-5pzK_jywjc630R6LrUUS4dRrjkI9TzaHM7ksFCFuDpZPezYhWrZf7qAZvASdLvk7YqBs2BoX0UkMldiBON3FL3Mp7zqbJh1EouRTX',
+    filename: '2020-07-08-11-49-20_3348.pdf',
+    realty: [ [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+Hit download
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2697cbad-000f-5000-8000-1ae346441450',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2697cbad-000f-5000-8000-1ae346441450'
+  },
+  created_at: '2020-07-08T12:11:25.816Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-08-12-11-26_5982.pdf
+Response sended
+User noticed with paylink
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '2697cbad-000f-5000-8000-1ae346441450' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  2697cbad-000f-5000-8000-1ae346441450
+User then:  User {
+  id: '2020-07-08-12-11-26_5982',
+  payid: '2697cbad-000f-5000-8000-1ae346441450',
+  body: {
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ],
+    recaptchaToken: '03AGdBq27y_bqx27eeh-dvYvI-V8Bb8AhGWDifWYnzxSYbAFKIL7xg1-1MhBu9ONXf8oCSaDGC48yTYInfReykccCBuaqcocQpddc9w9YDa1fEJcKJHKag-oXps2BW3fpQg-Bp3sw7gOOXemHg9ch3eFvqCq2Zteref4Ps0jN3CXdxg7g-cbO53CiNenPthB7pE1ZP8Qi9mh5NUbkMk2V5cQfxx40f5PfEFmtr26JQuUHQihdRNuvLCG0D4JGTaQtk52JxfaXBqYNU3P-F05mu-vhGnekWNw4m9a8DXJUIixd-d1DtQkzHiwKkUZTF_s5ADVwpVO4mR9d5otdM0PIPjSxeovzvEm0TUIrtDRYDSEd510Ts7YWB58CJFx5KcYukuIH_75w6Qvz-',
+    filename: '2020-07-08-12-11-26_5982.pdf',
+    realty: [ [Object] ],
+    registration: {
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество'
+    },
+    movable: [ [Object] ],
+    payment: {
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '2697cbad-000f-5000-8000-1ae346441450',
+      created_at: '2020-07-08T12:11:25.816Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object]
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594210283763,
+    debitors: [ [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2698a38f-000f-5000-a000-1d24617f0d1a',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2698a38f-000f-5000-a000-1d24617f0d1a'
+  },
+  created_at: '2020-07-09T03:32:31.520Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2698a3c2-000f-5000-8000-150aec0b12dd',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2698a3c2-000f-5000-8000-150aec0b12dd'
+  },
+  created_at: '2020-07-09T03:33:22.153Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+User noticed with paylink
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2698a408-000f-5000-9000-1336cd44ac88',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2698a408-000f-5000-9000-1336cd44ac88'
+  },
+  created_at: '2020-07-09T03:34:32.064Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-09-03-34-33_1619.pdf
+Response sended
+Hit notify post
+User noticed with paylink
+Hit /checkout/status post
+Request body:  { payid: '2698a408-000f-5000-9000-1336cd44ac88' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  2698a408-000f-5000-9000-1336cd44ac88
+User then:  User {
+  id: '2020-07-09-03-34-33_1619',
+  payid: '2698a408-000f-5000-9000-1336cd44ac88',
+  body: {
+    registration: {
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805'
+    },
+    movable: [ [Object] ],
+    payment: {
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '2698a408-000f-5000-9000-1336cd44ac88',
+      created_at: '2020-07-09T03:34:32.064Z',
+      recipient: [Object],
+      status: 'succeeded'
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594265671077,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ],
+    recaptchaToken: '03AGdBq25uM2zFY_gVY3GvTZ-c1dqN90Boi_ScAU-vZK7nBEUH79ZEePvtCECtMXJNqCXjkf_J7qBaALbO5y-aj_dZIrhap9sAmSZ1Ad6kF5tNW2K5wA1Lg2JGmnVheyKeRE32EX4-wlNVG0ST0V2tYWHd_oZexrNYLMi8Se-0RSUl2h1nDA51km6RGS9T8edUWrQEspH_lOJWvhXIsJgK-J8QkNKK5m5pl5DXCYPsKsOCr8e6vsUJhr7rUKndVfh_nliZRqZKopMj6XGDeIapOdUwDC0Nh-n2dQC_vJao3mxcCzz7_YU6u-LeHMgki0XAFjadetnwBsj9PGxSK_UKOThTBS0prrXOnDB6zy55v4cp851PWXEpUSjkjgTlL18AywLNME8Khfb7wyL9Du13b6aWxTLSOJ9F7Q',
+    filename: '2020-07-09-03-34-33_1619.pdf',
+    realty: [ [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2698a633-000f-5000-8000-19edab68ac3b',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2698a633-000f-5000-8000-19edab68ac3b'
+  },
+  created_at: '2020-07-09T03:43:47.582Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-09-03-43-48_8353.pdf
+Response sended
+User noticed with paylink
+Hit notify post
+Hit /checkout/status post
+Request body:  { payid: '2698a633-000f-5000-8000-19edab68ac3b' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  2698a633-000f-5000-8000-19edab68ac3b
+User then:  User {
+  id: '2020-07-09-03-43-48_8353',
+  payid: '2698a633-000f-5000-8000-19edab68ac3b',
+  body: {
+    recaptchaToken: '03AGdBq27p6LAus436yz0UmzerWpbCG_OJxX6nP_4wmF4qZ-DaRUXfom-5J7Biw97kSpzkV1aUdrfKrlnRvAMimPFFQwyC3LI9QVJitwGyDrtzGDyjcr1MLRkIrckx2RQYP0_Dhp2bb12Ju2DEUEP18-1rYhk4_HCJ2mD3BiXFX97VvnBa6Aa-9TteYb9LNjXwDc04GGoIS46bvf0Lzc4jwR8EzT4vTcjSvEzBpQwMcXqeYGgDRWyKh6F0W__CbClMhMt3RUPQmGhhUHHo8oIyYFEDC0FDtn_bhjkW85octdCljurAJW5QSkVTTbxs_mZdHFLYn6Jvpre5iNId_R_VOs4mR7ZdCIN8ZJ8mkIbQ-NpXV9YN8Ukv7ePhQohqUQ9OpZ3XjKRa8Ta8',
+    filename: '2020-07-09-03-43-48_8353.pdf',
+    realty: [ [Object] ],
+    registration: {
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru',
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество'
+    },
+    movable: [ [Object] ],
+    payment: {
+      test: true,
+      metadata: [Object],
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '2698a633-000f-5000-8000-19edab68ac3b',
+      created_at: '2020-07-09T03:43:47.582Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object]
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594266225862,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+running
+Express listening on:8086
+Hit /checkout/newpayment post
+Request body:  {
+  orderDescription: 'Подготовка заявления',
+  customerFullname: 'Ермаков Денис Отчество',
+  customerPhone: '+79626114494',
+  customerEmail: 'ermakov@weblime.ru'
+}
+Response: {
+  id: '2698aae2-000f-5000-a000-1b818a4cf7d9',
+  status: 'pending',
+  paid: false,
+  amount: { value: '300.00', currency: 'RUB' },
+  confirmation: {
+    type: 'redirect',
+    confirmation_url: 'https://money.yandex.ru/api-pages/v2/payment-confirm/epl?orderId=2698aae2-000f-5000-a000-1b818a4cf7d9'
+  },
+  created_at: '2020-07-09T04:03:46.172Z',
+  description: 'Подготовка заявления',
+  metadata: { scid: '1825012' },
+  recipient: { account_id: '721540', gateway_id: '1738524' },
+  refundable: false,
+  test: true
+}
+Hit user/add post
+Captcha score is:  0.9
+Getting court for:  Тольятти, бульвар Королева 9-101
+Saved:  /apps/pasqooda-api/app/userfiles/2020-07-09-04-03-47_8033.pdf
+Response sended
+Hit notify post
+User noticed with paylink
+Hit /checkout/status post
+Request body:  { payid: '2698aae2-000f-5000-a000-1b818a4cf7d9' }
+Response on get payment status: succeeded
+Status:  succeeded
+Status succeeded, going get User from Firebase by paid:  2698aae2-000f-5000-a000-1b818a4cf7d9
+User then:  User {
+  id: '2020-07-09-04-03-47_8033',
+  payid: '2698aae2-000f-5000-a000-1b818a4cf7d9',
+  body: {
+    recaptchaToken: '03AGdBq26_WTqUlPhpkEEi9qomPtDItWoIWA9onI6VEdKRyAaZ6j-Gdp6jVmdCGdyuaxe16R2okvCBl-bPwG0cHFXO3y__p4-oqRr8YGG6DS9r1OPtU1pVyS8BhqMQOvgzKOs7fkSaFNMGIOfY8ofmpS4hgfbhRih40D6kSt5ORbdEqsF3w9Le0EQBQQYbLMsC-o8PoDY8B7NLM-LARM0Da2mutccgsYiBOuI9DVLfX-T1LD46-sizSFKOWlGeKDOzLoCO4q5Gkr9rFo7nWw1a-dwL87HRiuoOLSZho3Rug2SBACaGvxKhgvpQI-3I5rEY1ecS5A9OahstQvP6FLLTKaCR130uLSHnbls8dpg3xdsxj3-Hfx0YMQs_MzNsOl7ttOOr0m7txhS7',
+    filename: '2020-07-09-04-03-47_8033.pdf',
+    realty: [ [Object] ],
+    registration: {
+      contact_name_name: 'Денис',
+      pass_date: '2020-07-01',
+      contact_gender: 'male',
+      hasMovables: 'yes',
+      contact_name_middle: 'Отчество',
+      regadress: 'Тольятти, бульвар Королева 9-101',
+      pass_date_menu: false,
+      hasRealty: 'yes',
+      contact_name_second: 'Ермаков',
+      pass_number: '3604692805',
+      contact_phone: '+79626114494',
+      hasUnpayTaxes: 'yes',
+      hasPenalties: 'yes',
+      pass_emitter: 'Октябрьским РОВД города Самары',
+      hasDebitors: 'yes',
+      contact_email: 'ermakov@weblime.ru'
+    },
+    movable: [ [Object] ],
+    payment: {
+      amount: [Object],
+      notification: [Object],
+      paid: true,
+      id: '2698aae2-000f-5000-a000-1b818a4cf7d9',
+      created_at: '2020-07-09T04:03:46.172Z',
+      recipient: [Object],
+      status: 'succeeded',
+      description: 'Подготовка заявления',
+      refundable: false,
+      confirmation: [Object],
+      test: true,
+      metadata: [Object]
+    },
+    taxes: [ [Object] ],
+    timestamp: 1594267423450,
+    debitors: [ [Object] ],
+    creditors: [ [Object] ],
+    penalties: [ [Object], [Object] ]
+  }
+}
+Try saying hello...
+Hello world
+Hit download

@@ -12,6 +12,8 @@ const fs = require('fs');
 let ee = new EventEmmiter();
 
 let express = require('express');
+
+
 let expressWorker = express();
 
 const axios = require('axios');
@@ -45,6 +47,7 @@ expressWorker.use('/', (req, res, next) => {
 });
 expressWorker.use(express.json());
 
+
 expressWorker.get(/download/, function(req, res, next) {
   try {
     console.log('Hit download');
@@ -77,7 +80,7 @@ expressWorker.get(/download/, function(req, res, next) {
 
 
 expressWorker.get('/', function(req, res, next) {
-  res.send('hello world! This is paqooda-api');
+  res.send('hello world! This is paqooda-api. Ref: ' + req.header('Referer'));
   console.log(req.body);
 });
 

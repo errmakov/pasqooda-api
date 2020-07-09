@@ -91,8 +91,8 @@ let helpers = {
             result+='Контакты: ' + items[i].email + ' ' + items[i].phone;
 
             result+="\r\n";
-
-            result+="Документ: " + items[i].document;
+            let docDate = new Date(Date.parse(items[i].document.date));
+            result+="Документ: " + items[i].document.name + ' ' + items[i].document.number + ' от ' + helpers.convertDate(docDate);
 
             result+="\r\n";
 
@@ -193,8 +193,8 @@ let helpers = {
                 
     
                 result+="\r\n";
-
-                result+="Документ: " + items[i].document;
+                let docDate = new Date(Date.parse(items[i].document.date));
+                result+="Документ: " + items[i].document.name + ' ' + items[i].document.number + helpers.convertDate(docDate);
 
                 result+="\r\n";
     

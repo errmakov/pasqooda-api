@@ -38,7 +38,7 @@ let testSet = [
             credit: '1000000',
             interest: '300000',
             penalties: '200000',
-            document: 'Договор займа Сбербанк СБЗМ-01' },
+            document: {name: 'Договор займа', date: '2020-01-03', number: 'СБР-002'} },
           { id: 1590946793067,
             name: 'ЗАО МТС Банк',
             legalForm: 'legal',
@@ -48,7 +48,7 @@ let testSet = [
             credit: '2000000',
             interest: '800000',
             penalties: '200000',
-            document: 'Договор займа МТСБанк МТ-ЗМ-02' } ],
+            document: {name: 'Кредитный договор', date: '2019-02-04', number: 'МТ-ЗМ-02'} } ],
        timestamp: 1590035254585,
        recaptchaToken:
         '03AGdBq26txUgg25G5JhxQopgVlbTeo1AMDZyGbYSHNWkYKlSq8NSQgYi3b7ltdbz5D2K6IYzP65DbkKVxx0knkQOx91Bi3rzfReovg-o35b6hcw-25GPgBjFdL7gd6HJbK36jAGmO_thiohu8kcQDIX66wtXR00pQd5foYNr-8Kx_cdomB3UJmUw9HBzAXgcDicul0nqZrQfgRO4MB-nUgYHpkUJffBcA3RRIW5cNa-72Xn-Ho9I5UcMJDEKYrwrSOwfWRhL376uZy5-jFx87JU3eRNvNRfz_-3XK6ziZoMWI6-NbII89pjB-vWFNO-mvt1adUgHN2yubZvzqA7gUucM5d0d23Kcginr6cLNphNHZtijO-zEXVZEtKVa6XUJ2UzGQ9arg3BHnXxZv7N4MRWY6NtmKSTriND2DFeVnYqnLAYpnYviEwMBn-gO_cCfVZj0rUTCjVTIA',
@@ -173,8 +173,53 @@ let sumSet = [
     output: '(двести пятьдесят девять тысяч триста семьдесят шесть) рублей 98 копеек'
   },]
 
+
+let docSet = [
+  {
+    input: {
+      name: 'Договор займа',
+      number: 'ДЗМ-01',
+      date: '2020-01-08'
+    },
+    result: 'Договора займа ДЗМ-01 от 08.01.2020' 
+  },
+  {
+    input: {
+      name: 'Кредитный договор',
+      number: 'КРД-01',
+      date: '2020-01-30'
+    },
+    result: 'Кредитного договора КРД-01 от 30.01.2020' 
+  },
+  {
+    input: {
+      name: 'Договор купли-продажи',
+      number: 'КППР-01',
+      date: '2020-01-30'
+    },
+    result: 'Договора купли-продажи КППР-01 от 30.01.2020' 
+  },
+  {
+    input: {
+      name: 'Договор найма (аренды)',
+      number: 'ДНА-01',
+      date: '2020-01-30'
+    },
+    result: 'Договора найма (аренды) ДНА-01 от 30.01.2020' 
+  },
+  {
+    input: {
+      name: 'Расписка',
+      number: 'РСП-01',
+      date: '2020-01-30'
+    },
+    result: 'Расписки РСП-01 от 30.01.2020' 
+  }
+]
+
+
 it("getCourt promise becomes resolved", function() {
-    testSet[0].input.regadress = 'Город Тольятти, бульвар Королева дом 9 кв 101'
+    testSet[0].input.registration.regadress = 'Город Тольятти, бульвар Королева дом 9 кв 101'
     let pdfGenerator = new PdfGenerator({data:testSet[0].input});
     return assert.becomes(pdfGenerator.getCourt(), 'Самарской области');
 
@@ -369,7 +414,7 @@ it("Creditor analysis block. We can pay just one creditor", function() {
   }
 })
 
-it("Creditor analysis block. We can pay  two or more creditors", function() {
+it("Creditor analysis block. We can pay two or more creditors", function() {
   for(let i in testSet) {
       testSet[i].input.registration.hasDebitors = 'yes';
       testSet[i].input.registration.hasRealty = 'yes';
@@ -398,4 +443,73 @@ it("Creditor analysis block. We can pay nobody", function() {
       let pdfGenerator = new PdfGenerator({data:testSet[0].input});
       assert.isEmpty(pdfGenerator.creditAnalysis());
   }
+})
+
+for (let i in docSet) {
+  it("Inflect contract name to generative", function() {
+    let doc = docSet[i];
+    let pdfGenerator = new PdfGenerator({data:testSet[0].input});
+    assert.deepEqual(pdfGenerator.inflectContract(doc.input), doc.result);
+  })
+}
+
+
+it("Inflect contract name to generative with no contract number", function() {
+  let doc = {
+    input: {
+      name: 'Договор займа',
+      date: '2020-01-08'
+    },
+    result: 'Договора займа от 08.01.2020' 
+  }
+  let pdfGenerator = new PdfGenerator({data:testSet[0].input});
+  assert.deepEqual(pdfGenerator.inflectContract(doc.input), doc.result);
+})
+
+it("Not Inflect contract name if it is not valid", function() {
+  let doc = {
+    input: {
+      name: 'Foobar',
+      number: 'FBR-01',
+      date: '2020-01-08'
+    },
+    result: 'Foobar FBR-01 от 08.01.2020' 
+  }
+  let pdfGenerator = new PdfGenerator({data:testSet[0].input});
+  assert.deepEqual(pdfGenerator.inflectContract(doc.input), doc.result);
+})
+
+it("Not Inflect contract name if it is not valid + without number", function() {
+  let doc = {
+    input: {
+      name: 'Foobar',
+      date: '2020-01-08'
+    },
+    result: 'Foobar от 08.01.2020' 
+  }
+  let pdfGenerator = new PdfGenerator({data:testSet[0].input});
+  assert.deepEqual(pdfGenerator.inflectContract(doc.input), doc.result);
+})
+
+it("Inflect contract name to generative with no contract number and without date", function() {
+  let doc = {
+    input: {
+      name: 'Договор займа'
+    },
+    result: 'Договора займа от NaN.NaN.NaN' 
+  }
+  let pdfGenerator = new PdfGenerator({data:testSet[0].input});
+  assert.deepEqual(pdfGenerator.inflectContract(doc.input), doc.result);
+})
+
+it("Inflect contract name to generative with no contract number and with invalid date", function() {
+  let doc = {
+    input: {
+      name: 'Договор займа',
+      date: '9999-99-12'
+    },
+    result: 'Договора займа от NaN.NaN.NaN' 
+  }
+  let pdfGenerator = new PdfGenerator({data:testSet[0].input});
+  assert.deepEqual(pdfGenerator.inflectContract(doc.input), doc.result);
 })
