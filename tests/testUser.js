@@ -5,10 +5,10 @@ const chai = require('chai');
 const User = require('../app/User');
 const assert = chai.assert;
 
-let payIDset = ['26838588-000f-5000-8000-195835613e4c'];
-let userIDset = ['2020-06-26-08-44-11_2995'];
+let payIDset = ['269912a3-000f-5000-a000-115d0e97b8e3'];
+let userIDset = ['2020-07-09-11-26-28_3625'];
 let notificationSet = {
-    id: '2687f8df-000f-5000-8000-18a8fab0b9a5',
+    id: '269912a3-000f-5000-a000-115d0e97b8e3',
     status: 'succeeded',
     paid: true,
     amount: { value: '300.00', currency: 'RUB' },
@@ -19,7 +19,7 @@ let notificationSet = {
     metadata: { scid: '1825012' },
     payment_method: {
       type: 'bank_card',
-      id: '2687f8df-000f-5000-8000-18a8fab0b9a5',
+      id: '269912a3-000f-5000-a000-115d0e97b8e3',
       saved: false,
       card: {foo: 'barcard'},
       title: 'Bank card *4444'
@@ -102,5 +102,43 @@ it("user.setBody() return becomes resolved with new body object", function(done)
     })
     .catch((err)=>{
         done(err);
+    })
+})
+
+
+it("User.search with no input param becomes resolved with empty array", function(done) {
+    User.search()
+    .then((result)=>{
+        assert.isEmpty(result);
+        done();
+    })
+})
+
+it("User.search with short input param (less than 3 chars) resolved with empty array", function(done) {
+    let keyword = 'fo';
+    User.search(keyword)
+    .then((result)=>{
+        assert.isEmpty(result);
+        done();
+    })
+})
+
+it("User.search with non string input param  resolved with empty array", function(done) {
+    let keyword = false;
+    User.search(keyword)
+    .then((result)=>{
+        assert.isEmpty(result);
+        done();
+    })
+})
+
+// Firebase must contains 'Ермаков' client
+it("User.search with normally param return array of object" , function(done) {
+    let keyword = 'Ермаков';
+    User.search(keyword)
+    .then((result)=>{
+        assert.isArray(result);
+        //console.log(result);
+        done();
     })
 })

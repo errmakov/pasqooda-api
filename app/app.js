@@ -90,6 +90,70 @@ expressWorker.post('/echo', function(req, res, next) {
     res.json(req.body);
 });
 
+expressWorker.get('/', function(req, res, next) {
+  res.send('hello world! This is paqooda-api. Ref: ' + req.header('Referer'));
+  console.log(req.body);
+});
+
+expressWorker.get(/admin\/user\/.*$/, function(req, res, next) {
+  console.log('Hit /admin/user/.../ GET');
+  let useridMatch = url.parse(req.url, true).pathname.match(/admin\/user\/(.*)$/)
+  let userID = useridMatch[1];
+  User.getByID(userID)
+  .then((user)=>{
+    res.send(user);
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.status(404)
+    .send('User not found');
+  })  
+});
+
+expressWorker.post(/admin\/user\/.*$/, function(req, res, next) {
+  console.log('Hit /admin/user/.../ POST');
+  let useridMatch = url.parse(req.url, true).pathname.match(/admin\/user\/(.*)$/)
+  let userID = useridMatch[1];
+  User.getByID(userID)
+  .then((user)=>{
+    let userBody = req.body;
+    return user.setBody(userBody);
+  })
+  .then((result)=>{
+    res.send({res: 'OK', message:result});  
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.status(404)
+    .send('User not found');
+  })  
+});
+
+
+/**
+    * Search for order by keyword
+    * @param {keyword: 'search  string'} POST object
+    * @returns {res: 'OK/ERR', message: {object with result or error message}}
+*/
+expressWorker.post('/admin/search', function(req, res, next) {
+  try {
+    console.log('Hit admin search');
+    console.log(req.body);
+    User.search(req.body.keyword)
+      .then((users)=>{
+        res.json({res:'OK', message: users});
+      })
+      .catch((err)=>{
+        res.json({res:'ERR', message: err.message});
+      })
+  } catch(err) {
+    console.log(err);
+    res.json({res:'ERR', message: err.message});
+  }
+  
+  
+});
+
 expressWorker.post('/notify', function(req, res, next) {
   console.log('Hit notify post');
   let notifier = new Notifier(config.notifier);

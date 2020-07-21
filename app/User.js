@@ -35,7 +35,6 @@ class User {
         
           
           if(user.exists) {
-              
               let newUser = {
                 id: user.id,
                 payid: user.data().payment.id,
@@ -45,7 +44,7 @@ class User {
               resolve(new User(newUser));  
             
           } else {
-            reject(new Error('User with id ' + uid + 'is not found'));
+            reject(new Error('User with id ' + uid + ' is not found'));
           }   
         })
         .catch((err)=>{
@@ -87,6 +86,48 @@ class User {
 
     sayHello() {
       console.log('Hello world');
+    }
+
+    /**
+    * Search orders by keyword
+    * @param {String} keyword Keyword for search with min length = 3
+    * @returns {Object} List of founded orders or false if nothing found
+    */
+    static search(keyword) {
+      let result = Array();
+      return  new Promise((resolve,reject)=>{
+        let typeKeyword = typeof(keyword);
+
+        if ((typeKeyword === 'undefined') || (typeKeyword === 'null') || (typeKeyword === 'boolean') || (typeKeyword === 'object')) resolve(result);
+        
+        keyword = String(keyword);
+
+        if (keyword.length<3) {
+          resolve(result);
+        } else {
+          User.db()
+            .then((dbh)=>{
+              return dbh.collection('users').where("registration.contact_name_second","==", keyword).get()
+            })
+            .then((user)=>{
+              if(!user.empty) {
+                user.forEach(item=>{
+                  let userItem = item.data();
+                  userItem.id = item.id;
+                  result.push(userItem);
+                })
+                resolve(result);
+              } else {
+                resolve(result);
+              }   
+            })
+            .catch((err)=>{
+              reject(new Error('Users not found'));
+            })
+            
+        }
+        
+      })
     }
 
     setBody(newbody) {
